@@ -9,7 +9,7 @@ public class GitHubUploader {
         HttpRequest getReq = new HttpRequest();
         getReq.setEndpoint('https://api.github.com/repos/' + owner + '/' + repo + '/contents/' + path);
         getReq.setMethod('GET');
-        getReq.setHeader('Authorization', 'token ' + token);
+        req.setHeader('Authorization', 'token ' + token);
         
         HttpResponse getRes = http.send(getReq);
         
@@ -17,6 +17,8 @@ public class GitHubUploader {
         if (getRes.getStatusCode() == 200) {
             Map<String, Object> responseMap = (Map<String, Object>) JSON.deserializeUntyped(getRes.getBody());
             sha = (String) responseMap.get('sha');
+System.debug('GitHub Response: ' + getRes.getBody());
+
         }
         
         HttpRequest req = new HttpRequest();
@@ -37,6 +39,8 @@ public class GitHubUploader {
         
         HttpResponse res = http.send(req);
         System.debug('GitHub Response: ' + res.getBody());
+System.debug('Status Code: ' + res.getStatusCode());
+  
     }
 }
 
