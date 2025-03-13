@@ -1,0 +1,3 @@
+"_","Opportunity","Opportunity.Name","Contact","Contact.FirstName","Contact.LastName","Contact.Email"
+"[OpportunityContactRole]","[Opportunity]","Grand Hotels Emergency Generators","[Contact]","John","Bond","bond_john@grandhotels.com"
+"[OpportunityContactRole]","[Opportunity]","Grand Hotels Emergency Generators","[Contact]","Tim","Barr","barr_tim@grandhotels.com"
