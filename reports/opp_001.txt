@@ -1,37 +1,19 @@
-public class GitHubUploader {
-    // Upload a file to GitHub
-    public static void uploadFile(String content, String filename) {
-        // GitHub details
-        String token = 'YOUR_GITHUB_PERSONAL_ACCESS_TOKEN'; // Replace with your token
-        String repo = 'Salesforce-Knowledge-Hub';           // Your repo name
-        String owner = 'lavanyamane66';                     // Your GitHub username
-        String path = 'reports/' + opp_001.txt;                // File location in repo
-
-        // Set up the HTTP request
-        HttpRequest req = new HttpRequest();
-        req.setEndpoint('https://api.github.com/repos/' + owner + '/' + repo + '/contents/' + path);
-        req.setMethod('PUT');
-        req.setHeader('Authorization', 'Bearer ' + token);
-        req.setHeader('Content-Type', 'application/json');
-
-        // Prepare the request body
-        String body = '{"message": "Upload ' + filename + '",'
-                    + '"content": "' + EncodingUtil.base64Encode(Blob.valueOf(content)) + '"}';
-        req.setBody(body);
-
-        // Send the request
-        Http http = new Http();
-        HttpResponse res = http.send(req);
-
-        // Log the response for debugging
-        System.debug('GitHub Response: ' + res.getBody());
-
-        // Check for errors
-        if (res.getStatusCode() == 201) {
-            System.debug('File uploaded successfully: ' + filename);
-        } else {
-            System.debug('Error uploading file: ' + res.getBody());
-        }
-    }
-}
-
+String content = 'public class GitHubUploader {\n' +
+    '    public static void uploadFile(String content, String filename) {\n' +
+    '        String token = \'YOUR_GITHUB_PERSONAL_ACCESS_TOKEN\';\n' +
+    '        String repo = \'Salesforce-Knowledge-Hub\';\n' +
+    '        String owner = \'lavanyamane66\';\n' +
+    '        String path = \'reports/\' + filename;\n' +
+    '        HttpRequest req = new HttpRequest();\n' +
+    '        req.setEndpoint(\'https://api.github.com/repos/\' + owner + \'/\' + repo + \'/contents/\' + path);\n' +
+    '        req.setMethod(\'PUT\');\n' +
+    '        req.setHeader(\'Authorization\', \'Bearer \' + token);\n' +
+    '        req.setHeader(\'Content-Type\', \'application/json\');\n' +
+    '        String body = \'{"message": "Upload \' + filename + \'", "content": "\' + EncodingUtil.base64Encode(Blob.valueOf(content)) + \'"}\';\n' +
+    '        req.setBody(body);\n' +
+    '        Http http = new Http();\n' +
+    '        HttpResponse res = http.send(req);\n' +
+    '        System.debug(\'GitHub Response: \' + res.getBody());\n' +
+    '    }\n' +
+    '}';
+GitHubUploader.uploadFile(content, 'opp_001.txt');
