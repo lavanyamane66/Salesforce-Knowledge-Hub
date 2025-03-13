@@ -5,7 +5,7 @@ public class GitHubUploader {
         String token = 'YOUR_GITHUB_PERSONAL_ACCESS_TOKEN'; // Replace with your token
         String repo = 'Salesforce-Knowledge-Hub';           // Your repo name
         String owner = 'lavanyamane66';                     // Your GitHub username
-        String path = 'reports/' + filename;                // File location in repo
+        String path = 'reports/' + opp_001.txt;                // File location in repo
 
         // Set up the HTTP request
         HttpRequest req = new HttpRequest();
